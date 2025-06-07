@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>โพสต์เรียลไทม์</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 1.5rem;
+      text-align: center;
+      color: #333;
+    }
+    .post {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+    .account {
+      font-weight: bold;
+      color: #444;
+    }
+    .datetime {
+      font-size: 0.85rem;
+      color: #888;
+    }
+    .content {
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>โพสต์เรียลไทม์</h1>
+    <div id="feed"></div>
+  </div>
+
+  <script>
+    const feed = document.getElementById("feed");
+
+    function generatePost() {
+      const now = new Date();
+      const timeString = now.toLocaleString("th-TH", {
+        dateStyle: "short",
+        timeStyle: "medium"
+      });
+      const mockMessages = [
+        "เรากำลังทดสอบระบบ",
+        "โพสต์ใหม่มาแล้ว!",
+        "ข่าวดีเกี่ยวกับการลงทุน",
+        "ติดตามข้อมูลล่าสุดได้ที่นี่",
+        "ระบบจะอัปเดตอัตโนมัติทุก 10 วินาที"
+      ];
+      const message = mockMessages[Math.floor(Math.random() * mockMessages.length)];
+
+      const post = document.createElement("div");
+      post.className = "post";
+      post.innerHTML = `
+        <div class="account">บัญชี: Elon Musk (จำลอง)</div>
+        <div class="datetime">🕒 ${timeString}</div>
+        <div class="content">📢 ${message}</div>
+      `;
+
+      feed.prepend(post);
+    }
+
+    // สร้างโพสต์ทันที และจากนั้นทุก 10 วินาที
+    generatePost();
+    setInterval(generatePost, 10000);
+  </script>
+</body>
+</html>
